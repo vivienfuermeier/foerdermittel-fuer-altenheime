@@ -28,6 +28,31 @@ function sucheFoerderungen() {
 
   const bundesweit = stiftungen.filter(s => s.gebiet === 'bundesweit');
 
+  // Sonderregel für Orte im Landkreis Osnabrück
+  const landkreisOsnabrueck = new Set([
+    "bad essen", "bad iburg", "bad laer", "bad rothenfelde", "belm", "bissendorf", "bohmte", "bramsche",
+    "dissen am teutoburger wald", "georgsmarienhütte", "glandorf", "hagen am teutoburger wald", "hasbergen",
+    "hilter am teutoburger wald", "melle", "neuenkirchen", "ostercappeln", "wallenhorst"
+  ]);
+  if (landkreisOsnabrueck.has(eingabe)) {
+    const sparkassenStiftung = {
+      name: "Stiftung der Sparkasse Osnabrück",
+      typ: "Stiftung",
+      gebiet: "Osnabrück",
+      beschreibung: "Die Stiftung unterstützt vorrangig Projekte im Gebiet der Stadt Osnabrück mit den Schwerpunkten Jugendhilfe, Altenhilfe, öffentliches Gesundheitswesen, Wohlfahrtswesen, Bildung und Erziehung, Kunst und Kultur, Sport, Tierschutz, Wissenschaft und Forschung, Völkerverständigung, Heimatpflege und Heimatkunde und Natur-, Landschafts- und Umweltschutz.\n\nDie Stiftung der Sparkassen im Landkreis Osnabrück wurde durch die Sparkassen Bersenbrück, Melle und Osnabrück im Jahr 1995 gegründet. Der Stiftungszweck umfasst die Förderung von Kultur und Kunst, Jugendhilfe, Sport, Naturschutz, Wissenschaft und Forschung, Bildung und Erziehung, Völkerverständigung, Heimatpflege und Heimatkunde, Landschafts- und Umweltschutz, Wohlfahrtswesen und Altenhilfe sowie öffentliches Gesundheitswesen im Osnabrücker Land.",
+      links: {
+        antrag: "https://engagement.sparkasse-osnabrueck.de/de/"
+      }
+    };
+    const info = document.createElement('p');
+    info.className = 'highlight-box font-semibold';
+    info.innerHTML = `Gefundene Förderungen für <strong>${eingabe.charAt(0).toUpperCase() + eingabe.slice(1)}</strong> (Landkreis Osnabrück):`;
+    ergebnisBox.appendChild(info);
+    zeigeKategorie("📍 Lokale Angebote (Landkreis Osnabrück)", [sparkassenStiftung], ergebnisBox);
+    zeigeKategorie("🌐 Bundesweite Angebote", bundesweit, ergebnisBox);
+    return;
+  }
+
   if (ortEintrag) {
     const bundesland = ortEintrag.bundesland;
     const lokale = stiftungen.filter(s => s.gebiet.toLowerCase() === ortEintrag.ort.toLowerCase());
@@ -124,7 +149,7 @@ function zeigeKategorie(titel, eintraege, container) {
   container.appendChild(block);
 }
 
-// >>> HIER NEU: Enter-Taste aktiviert Suche
+// Enter-Taste aktiviert Suche
 document.addEventListener('DOMContentLoaded', () => {
   const eingabeFeld = document.getElementById('ort');
   eingabeFeld.addEventListener('keydown', (event) => {
