@@ -17,15 +17,6 @@
       border-radius: 0.5rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
-    .hero {
-      border-bottom: 2px solid #e0e0e0;
-    }
-    .kompass {
-      display: inline-block;
-      font-size: 1.8rem;
-      vertical-align: middle;
-      margin-right: 0.5rem;
-    }
     .highlight-box {
       background-color: rgba(255, 255, 255, 0.85);
       padding: 0.75rem 1rem;
@@ -38,9 +29,14 @@
 <body class="min-h-screen text-gray-800">
   <header class="hero py-10 px-4">
     <div class="overlay max-w-4xl mx-auto text-center p-6">
-      <h1 class="text-4xl md:text-5xl font-bold text-pink-600 leading-tight">
-        <span class="kompass">🧭</span>Digitale Unterstützung für Senior*innen – Jetzt Fördermöglichkeiten entdecken!
-      </h1>
+      <!-- Logo + Titel -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <img src="Kompassbild.png" alt="Kompass-Logo" class="w-24 h-24 object-contain bg-white bg-opacity-80 rounded p-2 shadow-md">
+        <h1 class="text-3xl md:text-5xl font-bold text-pink-600 leading-tight text-center">
+          Digitale Unterstützung für Senior*innen – Jetzt Fördermöglichkeiten entdecken!
+        </h1>
+      </div>
+      <!-- Untertitel -->
       <p class="mt-4 text-lg text-gray-600">
         Finde staatliche Programme, Stiftungen und Lotterien zur Förderung digitaler Betreuungsangebote in Altenpflegeeinrichtungen.
       </p>
