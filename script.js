@@ -123,3 +123,14 @@ function zeigeKategorie(titel, eintraege, container) {
   });
   container.appendChild(block);
 }
+
+// >>> HIER NEU: Enter-Taste aktiviert Suche
+document.addEventListener('DOMContentLoaded', () => {
+  const eingabeFeld = document.getElementById('ort');
+  eingabeFeld.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sucheFoerderungen();
+    }
+  });
+});
